@@ -1,0 +1,83 @@
+<div class="container mt-4">
+    <h2>Pelicula</h2>
+  
+    <!-- Formulario para crear/editar un item -->
+    <form class="row g-3 needs-validation" novalidate (ngSubmit)="currentItem._id ? updateItem(currentItem._id, currentItem) : createItem(currentItem)">
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" class="form-control" [(ngModel)]="currentItem.name" name="name" required>
+      </div>
+  
+      <div class="form-group">
+        <label for="description">Descripcion:</label>
+        <input type="text" class="form-control" [(ngModel)]="currentItem.description" name="description" required>
+      </div>
+
+      <div class="form-group">
+        <label for="duracion">Duracion:</label>
+        <input type="text" class="form-control" [(ngModel)]="currentItem.duracion" name="duracion" required>
+      </div>
+
+      <div class="form-group">
+        <label for="genero">Genero:</label>
+        <input type="text" class="form-control" [(ngModel)]="currentItem.genero" name="genero" required>
+      </div>
+
+      <div class="form-group">
+        <label for="director">Director:</label>
+        <input type="text" class="form-control" [(ngModel)]="currentItem.director" name="director" required>
+      </div>
+
+      <div class="form-group">
+        <label for="anoLanzamiento">Año de lanzamiento:</label>
+        <input type="number" class="form-control" [(ngModel)]="currentItem.anoLanzamiento" name="anoLanzamiento" required>
+      </div>
+
+      <div class="form-group">
+        <label for="calificacion">Calificacion:</label>
+        <input type="text" class="form-control" [(ngModel)]="currentItem.calificacion" name="calificacion" required>
+      </div>
+
+      <div class="form-group">
+        <label for="poster">Poster:</label>
+        <input type="text" class="form-control" [(ngModel)]="currentItem.poster" name="poster" required>
+      </div>
+  
+      <button type="submit" class="btn btn-primary">{{currentItem._id ? 'Actualizar' : 'Agregar'}}</button>
+    </form>
+  
+    <hr>
+  
+    <!-- Lista de items -->
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Descripcion</th>
+          <th>Duracion</th>
+          <th>Genero</th>
+          <th>Director</th>
+          <th>Año de lanzamiento</th>
+          <th>Calificacion</th>
+          <th>Poster</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of items">
+          <td>{{ item.name }}</td>
+          <td>{{ item.description }}</td>
+          <td>{{ item.duracion }}</td>
+          <td>{{ item.genero }}</td>
+          <td>{{ item.director }}</td>
+          <td>{{ item.anoLanzamiento }}</td>
+          <td>{{ item.calificacion }}</td>
+          <td><img [src]="item.poster" alt="Poster" style="max-width: 100px; max-height: 100px;"></td>
+          <td>
+            <button class="btn btn-sm btn-primary" (click)="editItem(item._id)">Editar</button>
+            <button class="btn btn-sm btn-danger" (click)="deleteItem(item._id)">Borrar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
